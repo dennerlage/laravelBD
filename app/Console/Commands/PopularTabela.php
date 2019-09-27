@@ -5,8 +5,8 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App;
 
-class PopularTabela extends Command
-{
+class PopularTabela extends Command {
+
     /**
      * The name and signature of the console command.
      *
@@ -19,85 +19,47 @@ class PopularTabela extends Command
      *
      * @var string
      */
-    protected $description = 'Preenche nas tabelas';
+    protected $description = 'Preenche as tabelas';
 
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function handle()
-    {
-        $vnome [] = 'Denner';
-        $vnome [] = 'Cris';
-        $vnome [] = 'Gabriel';
-        $vnome [] = 'Alexandre';
-        $vnome [] = 'Ptrus';
+    public function handle() {
+
+        $arrayCategorias [] = "Categoria 1";
+        $arrayCategorias [] = "Categoria 2";
+        $arrayCategorias [] = "Categoria 3";
         
-        $cpf [] = '99999999999';
-        $cpf [] = '99999999995';
-        $cpf [] = '99999999994';
-        $cpf [] = '99999999993';
-        $cpf [] = '99999999992';
+        foreach ($arrayCategorias as $cat) {
+            $categoria = new App\Categoria();
+            $categoria->nomcat = $cat;
+            $categoria->save();
+        }
         
-        $end [] = 'Rua Joaquim Zucco 127';
-        $end [] = 'Rua Ruan Zucco 222';
-        $end [] = 'Rua Bruno Zucco 111';
-        $end [] = 'Rua Navi Zucco 196';
-        $end [] = 'Rua kuler Zucco 185';
+        //Defini no modelo
+        //protected $primaryKey = 'codcat';
         
-        $bai [] = 'Barracão';
-        $bai [] = 'Santa rita';
-        $bai [] = 'Santa Terezinha';
-        $bai [] = 'Planalto';
-        $bai [] = 'Limeira Limeira';
+       // App\Categoria::where('codcat', 1)->delete();
+       /// App\Categoria::where('codcat', 5)->delete();
         
-        $cid [] = 'Brusque';
-        $cid [] = 'Dom Joaquim';
-        $cid [] = 'João Batista';
-        $cid [] = 'Barcelona';
-        $cid [] = 'Madrid';
+      ///  $categoriaSelecionada = App\Categoria::find(10);
+       /// $categoriaSelecionada->nomcat = "oioioioioi";
+        //$categoriaSelecionada->save();
+   
+      //  $listaCategorias = App\Categoria::all();
         
-        $uf [] = 'SC';
-        $uf [] = 'PR';
-        $uf [] = 'RJ';
-        $uf [] = 'SP';
-        $uf [] = 'RS';
+       // foreach ($listaCategorias as $l) {
+        //    $this->info($l->nomcat);
+           
+       // }
         
-        $tel [] = '11111111111';
-        $tel [] = '11111111112';
-        $tel [] = '11111111113';
-        $tel [] = '11111111114';
-        $tel [] = '11111111115';
         
-        $num [] = 1;
-        $num [] = 2;
-        $num [] = 3;
-        $num [] = 4;
-        $num [] = 5;
-        
-        for($i = 0; $i < 5 ; $i++){
-            $cliente = new App\Cliente();
-            $cliente->nomcli = $vnome[$i];
-            $cliente->cpfcli = $cpf[$i];
-            $cliente->endcli = $end[$i];
-            $cliente->numcli = $num[$i];
-            $cliente->baicli = $bai[$i];
-            $cliente->cidcli = $cid[$i];
-            $cliente->ufcli = $uf[$i];
-            $cliente->telcli = $tel[$i];
-            $cliente->save();
-		}
-                             
     }
+
 }
